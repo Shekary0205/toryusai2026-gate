@@ -1063,6 +1063,26 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
   .stalk { animation: none !important; }
   #leaves { display: none; }
 }
+/* Bus timetable PDF buttons */
+.pdf-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.pdf-btn {
+  display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 18px;
+  border-radius: var(--r-md); text-decoration: none; color: var(--text);
+  background: rgba(230,190,110,.08); box-shadow: inset 0 0 0 1px rgba(230,190,110,.3);
+  transition: background-color .2s, box-shadow .2s, transform .2s var(--ease);
+}
+.pdf-btn:hover { background: rgba(230,190,110,.14); box-shadow: inset 0 0 0 1px var(--gold-soft); }
+.pdf-btn:active { transform: translateY(1px); }
+.pdf-btn:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 3px; }
+.pdf-ico { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: var(--r-sm); color: var(--gold-soft); background: rgba(230,190,110,.12); }
+.pdf-text { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.4; }
+.pdf-day { font-size: .85rem; color: var(--text-3); display: flex; align-items: center; gap: 8px; }
+.pdf-day .today-flag { display: inline-block; padding: 0 7px; border-radius: var(--r-pill); font-size: .68rem; font-weight: 700; line-height: 1.55; color: #fff; background: #b23b32; }
+.pdf-day .today-flag[hidden] { display: none; }
+.pdf-name { font-family: var(--font-mincho); font-size: 1.15rem; font-weight: 700; }
+.pdf-tag { flex: none; padding: 3px 10px; border-radius: var(--r-pill); font-size: .75rem; font-weight: 700; letter-spacing: .06em; color: var(--ink); background: linear-gradient(180deg, #f6dfa6, #e2b862); }
+.pdf-body { padding: 0 !important; }
+.pdf-body iframe { display: block; width: 100%; height: min(78vh, 1100px); border: 0; background: #fff; }
 </style>
 </head>
 <body>
@@ -1253,7 +1273,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
           <span class="tile-icon"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg></span>
           <span class="tile-text">
             <span class="tile-title phrase">アクセス<span class="dot">・</span><wbr>バス</span>
-            <span class="tile-desc">大学バス時刻表・駐車場</span>
+            <span class="tile-desc">次の大学バス・バス時刻表</span>
           </span>
           <span class="tile-foot"><span class="tag tag--mint tile-badge" data-badge="access"></span><span class="tile-arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
         </button>
@@ -1519,24 +1539,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
       </div>
 
       <div class="block">
-        <h3 class="h3">花火の観覧場所 <span class="h3-sub">公式の交通規制図より</span></h3>
-        <div class="card">
-          <p class="fact"><span class="fact-label">観覧できる場所（交通規制図の緑の区域）</span></p>
-          <ul class="list-dot view-list">
-            <li><b>中庭</b>（メインステージのすぐそば）</li>
-            <li>健康福祉学部 <span class="nw">1〜3号館</span>の周辺</li>
-            <li>薬学部 <span class="nw">7号館</span>・人間発達学部 <span class="nw">8号館</span>・農学部 <span class="nw">10号館</span>の周辺</li>
-            <li>保健医療学部 <span class="nw">4・5号館</span>、心理学科 <span class="nw">6号館</span>の周辺、ファミマ付近</li>
-            <li>駐車場：<span class="nw">第1</span>・<span class="nw">第2</span>・<span class="nw">第4</span>・<span class="nw">第5,6</span>・<span class="nw">第7,8</span>・<span class="nw">第9</span></li>
-          </ul>
-        </div>
-        <div class="notes">
-          <p class="note note--red"><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span>打ち上げ場所の<b>陸上グラウンド周辺は立入禁止</b>です（<span class="nw">12:00〜19:20</span>）。</span></p>
-          <p class="note"><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span>体育館・臨時駐車場・クリニック・11号館のあたりは、交通規制図では観覧場所に含まれていません。会場では係員の案内に従ってください。</span></p>
-        </div>
-      </div>
-
-      <div class="block">
         <h3 class="h3">前夜祭の出店 <span class="h3-sub">14:00〜／1号館周辺・藤龍門付近</span></h3>
         <div class="cards cards--2">
           <div class="card fact">
@@ -1555,15 +1557,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
           </div>
         </div>
         <div class="notes"><p class="note"><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span>前夜祭は<b class="nw">14:00〜18:45（閉会）</b>、屋台の出店は<b class="nw">18:00まで</b>です（公式サイトの一部には「<span class="nw">14:00〜19:00</span>」の表記もあります）。</span></p></div>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">ご覧になる前に</h3>
-        <div class="notes" style="margin-top:0">
-          <p class="note note--red"><svg class="ico" aria-hidden="true"><use href="#i-car"/></svg><span>花火の前後は構内の道路で<b>交通規制</b>があります。公式の前夜祭ページでは「<b class="nw">17:45から</b>交通規制・通行止め」、交通規制図では「車両通行禁止 <b class="nw">17:00〜19:20</b>」と案内されています。お車の方は早めにお越しください。</span></p>
-          <p class="note"><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span>前夜祭の日も駐車場は利用できます（公式の前夜祭ページより）。</span></p>
-          <p class="note"><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span>雨天の場合は公式サイト・Instagramでお知らせします（花火ポスターには「雨天時 翌日の同時刻」と記載されています）。雨天時はステージの内容が一部変更・中止になる場合があります。</span></p>
-        </div>
       </div>
 
       <div class="block">
@@ -1604,91 +1597,46 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
     <span class="grab" aria-hidden="true"></span>
     <div class="modal-head">
       <span class="modal-icon"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg></span>
-      <div class="modal-titles"><h2 class="modal-title" id="m-access-title">アクセス<span class="dot">・</span>バス</h2><p class="modal-sub">大学バス時刻表・路線バス・駐車場</p></div>
+      <div class="modal-titles"><h2 class="modal-title" id="m-access-title">アクセス<span class="dot">・</span>バス</h2><p class="modal-sub">次の大学バス・大学バス時刻表</p></div>
       <button class="modal-close" type="button" data-close aria-label="閉じる"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
     </div>
     <div class="modal-body">
-      <div class="block">
-        <div class="cards">
-          <div class="card fact"><span class="fact-label">会場</span><span class="fact-main">高崎健康福祉大学</span><span class="fact-sub">〒370-0033 群馬県高崎市中大類町37-1</span></div>
-          <div class="card fact"><span class="fact-label">大学バス</span><span class="fact-main">高崎駅東口 ⇄ 8号館前</span><span class="fact-sub">一般の方もご利用いただけます。所要 約20分（紫寮経由は約25分）</span></div>
-          <div class="card fact"><span class="fact-label">お車</span><span class="fact-main">高崎ICから約5分</span><span class="fact-sub">高崎玉村スマートICから約10分。大学の駐車場を利用できます（下の「駐車場」をご覧ください）</span></div>
-        </div>
-      </div>
-
       <div class="block" id="busNextBlock" hidden>
         <h3 class="h3">次の大学バス <span class="h3-sub" id="busNextDay"></span></h3>
         <div class="next-bus" id="busNext"></div>
       </div>
 
       <div class="block">
-        <h3 class="h3">大学バス時刻表</h3>
-        <div id="busTabs"></div>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">のりば</h3>
-        <div class="places">
-          <div class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-train"/></svg></span><div><b>高崎駅 東口</b><span>東口ロータリーのスクールバス乗り場から発車します</span></div></div>
-          <div class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg></span><div><b>大学（8号館前）</b><span>響和館のそばのバス停から発着します</span></div></div>
-          <div class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg></span><div><b>前夜祭の <span class="nw">17:20・17:30・18:20</span> 発</b><span>旧5号館（ロータリー）から出発します。8号館からは出発しません。場所がわからない方は、係員または本部（藤龍門付近）におたずねください</span></div></div>
+        <h3 class="h3">大学バス時刻表 <span class="h3-sub">公式の時刻表（PDF）</span></h3>
+        <div class="pdf-links">
+          <a class="pdf-btn" href="gate-assets/bus-2026-zenyasai.pdf" target="_blank" rel="noopener" data-pdf data-label="大学バス時刻表 10/16（金）前夜祭">
+            <span class="pdf-ico"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg></span>
+            <span class="pdf-text"><span class="pdf-day">10/16（金）<span class="today-flag" data-bus-today="eve" hidden>今日</span></span><span class="pdf-name">前夜祭の時刻表</span></span>
+            <span class="pdf-tag">PDF</span>
+          </a>
+          <a class="pdf-btn" href="gate-assets/bus-2026-honsai.pdf" target="_blank" rel="noopener" data-pdf data-label="大学バス時刻表 10/17（土）・18（日）本祭">
+            <span class="pdf-ico"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg></span>
+            <span class="pdf-text"><span class="pdf-day">10/17（土）・18（日）<span class="today-flag" data-bus-today="main" hidden>今日</span></span><span class="pdf-name">本祭の時刻表</span></span>
+            <span class="pdf-tag">PDF</span>
+          </a>
         </div>
-        <div class="notes"><p class="note"><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span>大学のバスは一般のお客様もご利用いただけます。大学公式サイトの交通アクセスでは、スクールバスは無料と案内されています。時間に余裕をもってお越しください。</span></p></div>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">路線バスで <span class="h3-sub">大学公式サイトより</span></h3>
-        <div class="cards cards--2">
-          <div class="card fact"><span class="fact-label">高崎駅 東口から</span><span class="fact-main">市内循環バス「ぐるりん」</span><span class="fact-sub">群馬の森線（系統番号9）で「高崎健康福祉大学」下車、徒歩約5分</span></div>
-          <div class="card fact"><span class="fact-label">高崎駅 西口から</span><span class="fact-main">群馬中央バス</span><span class="fact-sub">1番乗り場「県立女子大学」ゆきで「矢中町入口」下車、徒歩約10分</span></div>
-        </div>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">駐車場</h3>
-        <div class="cards cards--2">
-          <div class="card fact">
-            <span class="fact-label">前夜祭（10月16日）</span>
-            <ul class="list-dot view-list">
-              <li>駐車場は利用できます（公式の前夜祭ページより）。</li>
-              <li>花火の前後は交通規制があります。公式ページでは「<b class="nw">17:45から</b>通行止め」、交通規制図では「車両通行禁止 <b class="nw">17:00〜19:20</b>」。早めにお越しください。</li>
-            </ul>
-          </div>
-          <div class="card fact">
-            <span class="fact-label">本祭（10月17日・18日）<span class="muted">― 公式の駐車場マップより</span></span>
-            <ul class="list-dot view-list">
-              <li>第1〜第10駐車場を利用できます。教職員駐車場の一部も、当日は一般の方が利用できます。</li>
-              <li>第2駐車場の<b>赤枠で囲まれた部分は関係者用</b>です。駐車しないようお願いします。</li>
-            </ul>
-          </div>
-        </div>
-        <p class="muted small" style="margin-top:10px">敷地内での自転車移動は禁止です。</p>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">スマートフォンで見る</h3>
-        <div class="qr-panel">
-          <div class="qr-card">
-            <div class="qr-box" data-qr="https://www.google.com/maps/search/?api=1&amp;query=%E9%AB%98%E5%B4%8E%E5%81%A5%E5%BA%B7%E7%A6%8F%E7%A5%89%E5%A4%A7%E5%AD%A6" role="img" aria-label="QRコード：Googleマップ 高崎健康福祉大学"></div>
-            <span class="qr-label">Googleマップ</span>
-            <span class="qr-url">高崎健康福祉大学</span>
-            <a class="btn btn--ghost btn--sm qr-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E9%AB%98%E5%B4%8E%E5%81%A5%E5%BA%B7%E7%A6%8F%E7%A5%89%E5%A4%A7%E5%AD%A6" target="_blank" rel="noopener" data-label="Googleマップ 高崎健康福祉大学"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>地図アプリで開く</a>
-          </div>
-          <div class="qr-card">
-            <div class="qr-box" data-qr="https://toryu-sai.com/?p=4809" role="img" aria-label="QRコード：公式のバス時刻表"></div>
-            <span class="qr-label">公式のバス時刻表</span>
-            <span class="qr-url">toryu-sai.com</span>
-            <a class="btn btn--ghost btn--sm qr-link" href="https://toryu-sai.com/?p=4809" target="_blank" rel="noopener" data-label="バスの時刻表（公式サイト）"><svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg>公式の時刻表を見る</a>
-          </div>
-          <div class="qr-card">
-            <div class="qr-box" data-qr="https://www.takasaki-u.ac.jp/guide/access.html" role="img" aria-label="QRコード：大学公式 交通アクセス"></div>
-            <span class="qr-label">大学公式 交通アクセス</span>
-            <span class="qr-url">takasaki-u.ac.jp</span>
-            <a class="btn btn--ghost btn--sm qr-link" href="https://www.takasaki-u.ac.jp/guide/access.html" target="_blank" rel="noopener" data-label="高崎健康福祉大学 交通アクセス"><svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg>交通アクセスを見る</a>
-          </div>
-        </div>
+        <p class="muted small" style="margin-top:10px">令和8年度 藤龍祭 大学バス時刻表（藤龍祭 公式サイトより）</p>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- PDF viewer (kiosk: PDFs open inside the page instead of a new tab) -->
+<div class="modal" id="m-pdf" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel is-wide" role="dialog" aria-modal="true" aria-labelledby="m-pdf-title" tabindex="-1">
+    <span class="grab" aria-hidden="true"></span>
+    <div class="modal-head">
+      <span class="modal-icon"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg></span>
+      <div class="modal-titles"><h2 class="modal-title" id="m-pdf-title">大学バス時刻表</h2><p class="modal-sub" id="m-pdf-sub"></p></div>
+      <button class="modal-close" type="button" data-close aria-label="閉じる"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="modal-body pdf-body"><iframe id="pdfFrame" title="大学バス時刻表（PDF）"></iframe></div>
   </div>
 </div>
 
@@ -2252,7 +2200,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
     } else {
       set('program', st.phase === 'before' ? '10/16〜10/18' : '');
       set('stalls', '');
-      set('access', '時刻表・駐車場');
+      set('access', '大学バス時刻表');
     }
     if (n.key < '2026-10-16') set('fire', '10/16（金）18:30〜');
     else if (n.key === '2026-10-16' && n.min < 18 * 60 + 45) set('fire', '本日 18:30〜');
@@ -2310,7 +2258,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
       p += `</div>`;
       if (d.id === 'eve') {
         p += `<div class="notes" style="margin-top:22px">
-          <p class="note">${ico('i-bus')}<span>帰りの大学バス：<b>19:20・20:10</b> 8号館前発（高崎駅・紫寮行き、各2台）。17:20・17:30・18:20 発は旧5号館（ロータリー）から出発します（場所がわからない方は、係員または本部〈藤龍門付近〉におたずねください）。</span></p>
           <p class="note">${ico('i-info')}<span>雨天時はステージの内容が一部変更・中止になる場合があります。最新情報は公式サイト・Instagramでお知らせします。</span></p>
         </div>
         <div class="link-row"><button class="btn btn--ghost btn--sm" type="button" data-open="m-fire" data-replace>${ico('i-fire')}花火・前夜祭のくわしい案内</button></div>`;
@@ -2508,77 +2455,10 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
   /* =========================================================
      Bus boards
      ========================================================= */
-  function minChip(b, kind) {
-    const [hh, mm] = b.d.split(':');
-    const marks = [];
-    let cls = 'min';
-    let sr = '';
-    if (kind === 'out') {
-      if (!b.st) { cls += ' is-ryo'; marks.push('<span class="mk">紫寮のみ</span>'); sr = `紫寮行き（高崎駅には行きません）、紫寮${b.ry}着`; }
-      else { sr = `高崎駅${b.st}着${b.ry ? `、紫寮${b.ry}着` : ''}`; if (b.ry) marks.push('<span class="mk">紫</span>'); }
-      if (b.o5) { cls += ' is-old5'; marks.push('<span class="mk mk--5">旧5</span>'); sr += '、旧5号館ロータリーから発車'; }
-    } else {
-      sr = `8号館${b.a}着${b.ry ? '、紫寮経由' : ''}`;
-      if (b.ry) marks.push('<span class="mk">紫</span>');
-    }
-    if (b.n) { marks.push(`<span class="mk mk--n">×${b.n}</span>`); sr += `、${b.n}台`; }
-    return `<span class="${cls}" data-t="${toMin(b.d)}"${kind === 'out' && b.st ? ' data-st="1"' : ''}><span class="sr-only">${hh}時</span>${mm}<span class="sr-only">分発、${sr}</span>${marks.join('')}</span>`;
-  }
-  function hoursTable(list, kind) {
-    const byHour = new Map();
-    list.forEach((b) => { const h = +b.d.split(':')[0]; if (!byHour.has(h)) byHour.set(h, []); byHour.get(h).push(b); });
-    let h = '<div class="hours">';
-    byHour.forEach((arr, hr) => { h += `<div class="hour-row"><span class="hr">${hr}<span class="sr-only">時台</span></span><span class="mins">${arr.map((b) => minChip(b, kind)).join('')}</span></div>`; });
-    return h + '</div>';
-  }
-  function renderBus() {
-    const wrap = $('#busTabs');
-    const sets = [
-      { id: 'eve', label: '10/16（金）', name: '前夜祭', data: BUS.eve, sub: '2026年9月16日改訂' },
-      { id: 'main', label: '10/17（土）・18（日）', name: '本祭', data: BUS.main, sub: '2日間とも同じ時刻です' },
-    ];
-    let h = `<div class="tabs" role="tablist" aria-label="時刻表の日にち">`;
-    sets.forEach((s, i) => { h += `<button class="tab" role="tab" type="button" id="bt-${s.id}" data-key="${s.id}" aria-controls="bp-${s.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}"><span class="t-sm">${s.label}<span class="today-flag" hidden>今日</span></span><span class="t-lg">${s.name}</span></button>`; });
-    h += `</div>`;
-    sets.forEach((s, i) => {
-      h += `<div class="tabpanel" role="tabpanel" id="bp-${s.id}" aria-labelledby="bt-${s.id}" tabindex="0" ${i === 0 ? '' : 'hidden'} data-bus="${s.id}">
-        <p class="muted small">令和8年度 藤龍祭 大学バス時刻表（${s.sub}）</p>
-        <div class="boards">
-          <section class="board" data-kind="in"><h4 class="board-head">${ico('i-train')}高崎駅東口 → 大学（8号館前）</h4><p class="board-sub">${s.id === 'eve' ? '所要 約20分' : '所要 約20分（紫寮経由は約25分）'}</p>${hoursTable(s.data.inn, 'in')}</section>
-          <section class="board" data-kind="out"><h4 class="board-head">${ico('i-bus')}大学（8号館前）→ 高崎駅</h4><p class="board-sub">所要 約20分。「紫」は高崎駅のあと紫寮まで行く便</p>${hoursTable(s.data.out, 'out')}</section>
-        </div>
-        <div class="legend" aria-hidden="true">
-          <span><span class="min">00<span class="mk">紫</span></span>紫寮経由</span>
-          ${s.id === 'eve' ? '<span><span class="min is-ryo">00<span class="mk">紫寮のみ</span></span>高崎駅には行きません</span><span><span class="min is-old5">00<span class="mk mk--5">旧5</span></span>旧5号館（ロータリー）発</span>' : ''}
-          ${s.id === 'eve' ? '<span><span class="min">00<span class="mk mk--n">×2</span></span>複数台で運行</span>' : ''}
-          <span><span class="min is-next">00</span>次の便</span>
-        </div>
-      </div>`;
-    });
-    wrap.innerHTML = h;
-    busTabs = setupTabs($('.tabs', wrap));
-  }
   function updateBusStates(n) {
     const tid = todayId(n);
     const key = tid ? busKeyFor(tid) : null;
-    $$('#busTabs .tab').forEach((t) => { const f = $('.today-flag', t); if (f) f.hidden = t.dataset.key !== key; });
-    $$('#busTabs [data-bus]').forEach((panel) => {
-      const isToday = panel.dataset.bus === key;
-      const dayOver = n.key > '2026-10-18' || (panel.dataset.bus === 'eve' && n.key > '2026-10-16');
-      $$('.board', panel).forEach((board) => {
-        const isOut = board.dataset.kind === 'out';
-        let nextMarked = false;
-        $$('.min[data-t]', board).forEach((c) => {
-          const t = +c.dataset.t;
-          const past = dayOver || (isToday && t < n.min);
-          c.classList.toggle('is-past', past);
-          // "next" = first upcoming departure today (outbound: only buses that go to 高崎駅)
-          const isNext = isToday && !past && !nextMarked && (!isOut || c.dataset.st === '1');
-          c.classList.toggle('is-next', isNext);
-          if (isNext) nextMarked = true;
-        });
-      });
-    });
+    $$('[data-bus-today]').forEach((f) => { f.hidden = f.dataset.busToday !== key; });
     // next-bus summary
     const blk = $('#busNextBlock');
     if (!tid) { blk.hidden = true; return; }
@@ -2617,7 +2497,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
   /* =========================================================
      Tabs
      ========================================================= */
-  let programTabs = null, busTabs = null;
+  let programTabs = null;
   function setupTabs(list) {
     const tabs = $$('[role="tab"]', list);
     function select(t, focus) {
@@ -2854,6 +2734,13 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
     }
 
     const a = e.target.closest('a[href]');
+    if (a && KIOSK && a.hasAttribute('data-pdf')) {
+      e.preventDefault();
+      $('#m-pdf-sub').textContent = a.dataset.label || '';
+      $('#pdfFrame').src = a.getAttribute('href') + '#view=FitH&toolbar=0';
+      openModal('m-pdf', { opener: a });
+      return;
+    }
     if (a && KIOSK) {
       const href = a.getAttribute('href') || '';
       if (a.target === '_blank' || href.startsWith('mailto:')) {
@@ -2914,13 +2801,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
     const tid = todayId(jstNow());
     programTabs.select(opts.day || tid || 'eve');
   };
-  hooks['m-access'] = (m, opts) => {
-    const n = jstNow();
-    const tid = todayId(n);
-    const want = opts.day ? busKeyFor(opts.day) : (tid ? busKeyFor(tid) : (n.key > '2026-10-16' ? 'main' : 'eve'));
-    busTabs.select(want);
-    updateBusStates(n);
-  };
+  hooks['m-access'] = () => updateBusStates(jstNow());
   hooks['m-stalls'] = (m, opts) => {
     const tid = opts.day || todayId(jstNow());
     stallState.cat = 'all';
@@ -3119,7 +3000,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
 
   renderProgram();
   renderStalls();
-  renderBus();
   renderFire();
   renderSponsors();
   $('#venueMap').innerHTML = stallMapSVG('venue');
