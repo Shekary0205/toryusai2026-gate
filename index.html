@@ -409,6 +409,7 @@ button.today-bus:active { transform: scale(.985); }
    Tiles
    ========================================================= */
 .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 20px); }
+a.tile { text-decoration: none; color: inherit; }
 .tile {
   position: relative; overflow: hidden; isolation: isolate;
   display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: 1fr auto;
@@ -1126,6 +1127,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
     <!-- UI icons (24x24, stroke) -->
     <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="4"/><path d="M8 3v4M16 3v4M3.5 10h17M8 14h2.5M13.5 14H16M8 17h2.5"/></symbol>
     <symbol id="i-shop" viewBox="0 0 24 24"><path d="M4.2 9.6 5.6 4.5h12.8l1.4 5.1"/><path d="M4.2 9.6a2.6 2.6 0 0 0 5.2 0 2.6 2.6 0 0 0 5.2 0 2.6 2.6 0 0 0 5.2 0"/><path d="M5.6 12.4V20h12.8v-7.6M10 20v-4.4h4V20"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C10.3 5.2 7.8 4.6 4 4.8v13.4c3.8-.2 6.3.4 8 1.7 1.7-1.3 4.2-1.9 8-1.7V4.8c-3.8-.2-6.3.4-8 1.7z"/><path d="M12 6.5v13.4"/></symbol>
     <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4.6 3.6 6.4v13l5.4-1.8 6 1.8 5.4-1.8v-13L15 6.4z"/><path d="M9 4.6v13M15 6.4v13"/></symbol>
     <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 2.8v3.4M12 17.8v3.4M2.8 12h3.4M17.8 12h3.4M5.5 5.5l2.4 2.4M16.1 16.1l2.4 2.4M5.5 18.5l2.4-2.4M16.1 7.9l2.4-2.4"/><circle cx="12" cy="12" r="2.4"/></symbol>
     <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="14" rx="3.5"/><path d="M4.5 11h15M8 17.5v2.6M16 17.5v2.6M8.5 6.6h7"/><circle cx="8.4" cy="14.2" r=".6"/><circle cx="15.6" cy="14.2" r=".6"/></symbol>
@@ -1253,14 +1255,14 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
           </span>
           <span class="tile-foot"><span class="tag tile-badge" data-badge="stalls"></span><span class="tile-arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
         </button>
-        <button class="tile" type="button" data-open="m-venue" aria-haspopup="dialog">
-          <span class="tile-icon"><svg class="ico" aria-hidden="true"><use href="#i-map"/></svg></span>
+        <a class="tile" href="gate-assets/pamphlet-2026.pdf" target="_blank" rel="noopener" data-pdf data-pdf-title="電子パンフレット" data-pdf-icon="i-book" data-label="藤龍祭2026 パンフレット（表面・裏面）">
+          <span class="tile-icon"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg></span>
           <span class="tile-text">
-            <span class="tile-title phrase">会場マップ<span class="dot">・</span><wbr>ご案内</span>
-            <span class="tile-desc">場所・トイレ・救護・注意事項</span>
+            <span class="tile-title">パンフレット</span>
+            <span class="tile-desc">電子パンフレットをPDFで開きます</span>
           </span>
-          <span class="tile-foot"><span class="tag tile-badge" data-badge="venue"></span><span class="tile-arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
-        </button>
+          <span class="tile-foot"><span class="tag tile-badge">PDF</span><span class="tile-arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
+        </a>
         <button class="tile tile--fire" type="button" data-open="m-fire" aria-haspopup="dialog">
           <span class="tile-icon"><svg class="ico" aria-hidden="true"><use href="#i-fire"/></svg></span>
           <span class="tile-text">
@@ -1414,90 +1416,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
   </div>
 </div>
 
-<!-- Venue -->
-<div class="modal" id="m-venue" hidden>
-  <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel is-wide" role="dialog" aria-modal="true" aria-labelledby="m-venue-title" tabindex="-1">
-    <span class="grab" aria-hidden="true"></span>
-    <div class="modal-head">
-      <span class="modal-icon"><svg class="ico" aria-hidden="true"><use href="#i-map"/></svg></span>
-      <div class="modal-titles"><h2 class="modal-title" id="m-venue-title">会場マップ<span class="dot">・</span><wbr>ご案内</h2><p class="modal-sub">場所・トイレ・救護・注意事項</p></div>
-      <button class="modal-close" type="button" data-close aria-label="閉じる"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
-    </div>
-    <div class="modal-body">
-      <div class="block">
-        <h3 class="h3">どこにある？</h3>
-        <ul class="places">
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-gate"/></svg></span><div><b>藤龍門</b><span>入ってすぐが模擬店エリア。本部テント（D1）もここにあります。今年も藤龍祭実行委員会が作りました！</span></div></li>
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-gym"/></svg></span><div><b>体育館（第一体育館）</b><span>ステージ企画・特別ゲスト。入口は1号館の階段から</span></div></li>
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-building"/></svg></span><div><b>1号館 1階</b><span>救護・AED・多目的トイレ・協賛企業ブース・ラブレター投函箱</span></div></li>
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-building"/></svg></span><div><b>1号館 2階</b><span>教室企画（201〜211）・りゅうりゅうくんストア（209）</span></div></li>
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-cafe"/></svg></span><div><b>2号館 2階</b><span>食堂（異文化カフェ ほか）・軽音楽部（212講義室）</span></div></li>
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-kids"/></svg></span><div><b>8号館</b><span>あそびのひろば（未就学児〜小学生向け・無料）</span></div></li>
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-ghost"/></svg></span><div><b>10号館 2階</b><span>お化け屋敷「忘れられた廃神社」</span></div></li>
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-drum"/></svg></span><div><b>響和館前（8号館前）</b><span>和太鼓集団「舞」（10月17日 13:00〜）</span></div></li>
-          <li class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg></span><div><b>大学バスのりば</b><span>8号館前（響和館のそば）から発着</span></div></li>
-        </ul>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">模擬店エリアの配置 <span class="h3-sub">概略図</span></h3>
-        <div class="map-wrap" id="venueMap"></div>
-        <p class="map-cap"><span>パンフレット裏面のマップをもとにした概略図です（位置はおおよそ）。番号をタッチするとお店の情報を表示します。</span></p>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">困ったときは</h3>
-        <div class="places">
-          <div class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-aid"/></svg></span><div><b>救護</b><span>1号館 1階</span></div></div>
-          <div class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></span><div><b>AED</b><span>1号館 1階（階段付近）</span></div></div>
-          <div class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-wc"/></svg></span><div><b>トイレ</b><span>1号館・2号館2階・8号館／9号館・10号館。多目的トイレは1号館1階</span></div></div>
-          <div class="place"><span class="place-ico"><svg class="ico" aria-hidden="true"><use href="#i-tent"/></svg></span><div><b>本部テント（D1）</b><span>藤龍門を入ってすぐ。お化け屋敷のチケット・ビンゴカードを販売</span></div></div>
-        </div>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">ご来場の皆さまへ（注意事項）</h3>
-        <ul class="rule-cards">
-          <li class="rule-card"><svg class="no-ico" viewBox="0 0 24 24" aria-hidden="true"><g class="g" transform="translate(4.6 4.6) scale(.62)"><use href="#g-cig"/></g><circle class="ring" cx="12" cy="12" r="10.2"/><path class="ring" d="M4.8 4.8 19.2 19.2"/></svg><span>大学内は<wbr><b>全面禁煙</b>です</span></li>
-          <li class="rule-card"><svg class="no-ico" viewBox="0 0 24 24" aria-hidden="true"><g class="g" transform="translate(4.6 4.6) scale(.62)"><use href="#g-beer"/></g><circle class="ring" cx="12" cy="12" r="10.2"/><path class="ring" d="M4.8 4.8 19.2 19.2"/></svg><span>酒類（ビール等）の<wbr><b>持ち込み禁止</b></span></li>
-          <li class="rule-card"><svg class="no-ico" viewBox="0 0 24 24" aria-hidden="true"><g class="g" transform="translate(4.6 4.6) scale(.62)"><use href="#g-cam"/></g><circle class="ring" cx="12" cy="12" r="10.2"/><path class="ring" d="M4.8 4.8 19.2 19.2"/></svg><span>ゲスト芸人の<wbr><b>撮影・録音禁止</b><wbr>（スマホ・カメラ等）</span></li>
-          <li class="rule-card"><svg class="no-ico" viewBox="0 0 24 24" aria-hidden="true"><g class="g" transform="translate(4.6 4.6) scale(.62)"><use href="#g-bike"/></g><circle class="ring" cx="12" cy="12" r="10.2"/><path class="ring" d="M4.8 4.8 19.2 19.2"/></svg><span>敷地内での<wbr><b>自転車移動禁止</b></span></li>
-        </ul>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">くわしいマップ・パンフレット</h3>
-        <p class="lead small">屋外・1号館・体育館などのくわしい出店マップとパンフレットは、公式サイトで見られます。</p>
-        <div class="qr-panel" style="margin-top:14px">
-          <div class="qr-card">
-            <div class="qr-box" data-qr="https://toryu-sai.com/?page_id=4432" role="img" aria-label="QRコード：藤龍祭パンフレット"></div>
-            <span class="qr-label">パンフレット・マップ</span>
-            <span class="qr-url">toryu-sai.com</span>
-            <a class="btn btn--ghost btn--sm qr-link" href="https://toryu-sai.com/?page_id=4432" target="_blank" rel="noopener" data-label="藤龍祭パンフレット"><svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg>パンフレットを見る</a>
-          </div>
-          <div class="qr-card">
-            <div class="qr-box" data-qr="https://toryu-sai.com/?page_id=119" role="img" aria-label="QRコード：本祭ページ"></div>
-            <span class="qr-label">本祭ページ</span>
-            <span class="qr-url">出店図・駐車場マップ</span>
-            <a class="btn btn--ghost btn--sm qr-link" href="https://toryu-sai.com/?page_id=119" target="_blank" rel="noopener" data-label="藤龍祭・本祭ページ"><svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg>本祭ページを見る</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">公式サイトのおしらせ</h3>
-        <div class="news">
-          <a href="https://toryu-sai.com/?p=4809" target="_blank" rel="noopener" data-label="バスの時刻表が公開されました！"><time datetime="2026-10-01">2026.10.01</time><span>バスの時刻表が公開されました！</span><svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg></a>
-          <a href="https://toryu-sai.com/?p=4796" target="_blank" rel="noopener" data-label="Be-rayさんの紹介！"><time datetime="2026-10-01">2026.10.01</time><span>Be-rayさんの紹介！</span><svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg></a>
-          <a href="https://toryu-sai.com/?p=4357" target="_blank" rel="noopener" data-label="りゅうりゅうくんスタンプ販売中"><time datetime="2026-09-07">2026.09.07</time><span>りゅうりゅうくんのLINEスタンプ販売中</span><svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Fireworks / Eve -->
+<!-- Fireworks / 前夜祭 -->
 <div class="modal" id="m-fire" hidden>
   <div class="modal-backdrop" data-close></div>
   <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="m-fire-title" tabindex="-1">
@@ -1557,15 +1476,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
           </div>
         </div>
         <div class="notes"><p class="note"><svg class="ico" aria-hidden="true"><use href="#i-info"/></svg><span>前夜祭は<b class="nw">14:00〜18:45（閉会）</b>、屋台の出店は<b class="nw">18:00まで</b>です（公式サイトの一部には「<span class="nw">14:00〜19:00</span>」の表記もあります）。</span></p></div>
-      </div>
-
-      <div class="block">
-        <h3 class="h3">帰りの大学バス</h3>
-        <div class="cards">
-          <div class="card fact"><span class="fact-label">花火のあと</span><span class="fact-main num">19:20・20:10 発</span><span class="fact-sub">8号館前 → 高崎駅 → 紫寮（各2台）</span></div>
-          <div class="card fact"><span class="fact-label">夕方の便に注意</span><span class="fact-main num">17:20・17:30・18:20 発</span><span class="fact-sub">この3便は<b>旧5号館（ロータリー）</b>から出発します。8号館からは出発しません。場所がわからない方は、係員または本部（藤龍門付近）におたずねください。</span></div>
-        </div>
-        <div class="link-row"><button class="btn btn--ghost btn--sm" type="button" data-open="m-access" data-replace data-day="eve"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg>バス時刻表をすべて見る</button></div>
       </div>
 
       <div class="block">
@@ -1632,11 +1542,11 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
   <div class="modal-panel is-wide" role="dialog" aria-modal="true" aria-labelledby="m-pdf-title" tabindex="-1">
     <span class="grab" aria-hidden="true"></span>
     <div class="modal-head">
-      <span class="modal-icon"><svg class="ico" aria-hidden="true"><use href="#i-bus"/></svg></span>
+      <span class="modal-icon"><svg class="ico" aria-hidden="true"><use id="m-pdf-icon" href="#i-bus"/></svg></span>
       <div class="modal-titles"><h2 class="modal-title" id="m-pdf-title">大学バス時刻表</h2><p class="modal-sub" id="m-pdf-sub"></p></div>
       <button class="modal-close" type="button" data-close aria-label="閉じる"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
     </div>
-    <div class="modal-body pdf-body"><iframe id="pdfFrame" title="大学バス時刻表（PDF）"></iframe></div>
+    <div class="modal-body pdf-body"><iframe id="pdfFrame" title="PDF資料"></iframe></div>
   </div>
 </div>
 
@@ -1854,7 +1764,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
         { s: '12:20', e: '13:40', title: 'ダンスサークル POMP', today: 1 },
         { s: '13:50', e: '14:50', title: 'のど自慢大会', desc: 'オーディションを通過した6組が出演', today: 1 },
         { s: '15:00', e: '15:50', title: '軽音楽部 ライブ', today: 1 },
-        { s: '16:00', e: '17:00', title: 'ビンゴ大会', desc: 'カード1枚100円（1人1枚まで）。体育館入口・本部テントで販売', note: 'パンフレット・ポスターには「14時〜」の表記もあります', today: 1 },
+        { s: '16:00', e: '17:00', title: 'ビンゴ大会', desc: 'カード1枚100円（1人1枚まで）。本部テントで販売', today: 1 },
       ] },
       { title: 'そのほかの時間指定企画', items: [
         { s: '09:30', e: '17:00', t: '9:30〜', title: 'スマブラ藤龍祭2026（エンジョイ部門）', desc: '大会のあとはフリープレイ', place: '1号館2階 211' },
@@ -1871,7 +1781,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
         { s: '11:00', e: '12:00', title: '芸人ゲスト', tag: ['撮影・録音禁止', 'red'], hl: 1, today: 1 },
         { s: '12:10', e: '13:40', title: 'ダンスサークル POMP', today: 1 },
         { s: '13:50', e: '15:50', title: '軽音楽部 ライブ', today: 1 },
-        { s: '16:00', e: '17:00', title: 'ビンゴ大会', desc: 'カード1枚100円（1人1枚まで）。体育館入口・本部テントで販売', note: 'パンフレット・ポスターには「14時〜」の表記もあります', today: 1 },
+        { s: '16:00', e: '17:00', title: 'ビンゴ大会', desc: 'カード1枚100円（1人1枚まで）。本部テントで販売', today: 1 },
       ] },
       { title: 'そのほかの時間指定企画', items: [
         { s: '09:30', e: '17:00', t: '9:30〜', title: 'スマブラ藤龍祭2026（ガチ部門）', desc: '大会のあとはフリープレイ', place: '1号館2階 211' },
@@ -2303,54 +2213,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
   /* =========================================================
      Stalls modal + map
      ========================================================= */
-  function stallMapSVG(mode) {
-    // mode: 'stalls' (scroll within modal) | 'venue' (open the stalls modal)
-    // Two drawings of the same rough sketch: landscape (tablet/kiosk) and portrait (phones, gate at the bottom).
-    const names = {}; STALLS.forEach((s) => { if (s.a === 'outdoor') names[s.code] = s.name; });
-    const link = (code, inner) => `<a class="sm-link" href="#st-${code}" data-stall="${code}" data-mode="${mode}" aria-label="${esc(`${code} ${names[code] || ''}`)}">${inner}</a>`;
-    const box = (code, cx, cy, w, h, mini = '') => link(code, `
-        <rect class="sm-box" x="${cx - w / 2}" y="${cy - h / 2}" width="${w}" height="${h}" rx="14"/>
-        <text class="sm-code" x="${cx}" y="${mini ? cy - 7 : cy}">${code}</text>
-        ${mini ? `<text class="sm-mini" x="${cx}" y="${cy + 18}">${mini}</text>` : ''}`);
-    const pill = (cls, cx, cy, w, h, rot, lines) => `<g${rot ? ` transform="rotate(${rot} ${cx} ${cy})"` : ''}><rect class="${cls}" x="${cx - w / 2}" y="${cy - h / 2}" width="${w}" height="${h}" rx="${Math.min(w, h) / 2}"/>${lines.map((t, i) => `<text class="sm-label" x="${cx}" y="${cy + 6 + (i - (lines.length - 1) / 2) * 20}">${t}</text>`).join('')}</g>`;
-    const c4 = (cx, cy) => link('C4', `<g transform="rotate(-38 ${cx} ${cy})"><rect class="sm-box" x="${cx - 33}" y="${cy - 33}" width="66" height="66" rx="14"/></g><text class="sm-code" x="${cx}" y="${cy}">C4</text>`);
-    const A = ['A10', 'A9', 'A8', 'A7', 'A6', 'A5', 'A4', 'A3', 'A2', 'A1'];
-
-    // landscape: 藤龍門 on the right
-    let L = `<svg class="sm-landscape" viewBox="0 0 1000 470" role="group" aria-label="模擬店エリアの配置（概略図）">`;
-    L += `<rect class="sm-area" x="10" y="10" width="905" height="450" rx="34"/>`;
-    L += `<text class="sm-title" x="470" y="160">模擬店エリア</text><text class="sm-sub" x="470" y="188">藤龍門を入ってすぐ</text>`;
-    A.forEach((c, i) => { L += box(c, 84 + i * 83.5, 72, 72, 66); });
-    L += box('B1', 60, 205, 70, 80) + box('B2', 60, 300, 70, 80);
-    L += pill('sm-eat', 113, 406, 166, 56, 0, ['飲食スペース']);
-    L += box('C1', 165, 300, 70, 70) + box('C2', 255, 300, 70, 70) + box('C3', 345, 300, 70, 70);
-    L += box('E1', 248, 404, 70, 58);
-    L += pill('sm-rb', 528, 247, 140, 54, -28, ['レッドブル', '車展示']);
-    L += c4(462, 350);
-    L += pill('sm-eat', 588, 362, 152, 54, -35, ['飲食スペース']);
-    L += box('D1', 858, 228, 64, 70, '本部') + box('D2', 858, 308, 64, 64) + box('D3', 858, 386, 64, 64);
-    L += `<rect class="sm-gate" x="932" y="110" width="52" height="190" rx="26"/>`;
-    L += `<text class="sm-gate-t" x="958" y="168">藤</text><text class="sm-gate-t" x="958" y="206">龍</text><text class="sm-gate-t" x="958" y="244">門</text>`;
-    L += `<text class="sm-mini" x="958" y="326" style="font-weight:700">入口</text></svg>`;
-
-    // portrait: the same sketch turned so that 藤龍門 is at the bottom
-    let P = `<svg class="sm-portrait" viewBox="0 0 480 1000" role="group" aria-label="模擬店エリアの配置（概略図）">`;
-    P += `<rect class="sm-area" x="10" y="10" width="450" height="905" rx="34"/>`;
-    P += `<text class="sm-title" x="288" y="205">模擬店エリア</text><text class="sm-sub" x="288" y="232">藤龍門を入ってすぐ</text>`;
-    A.forEach((c, i) => { P += box(c, 398, 84 + i * 83.5, 76, 74); });
-    P += box('B1', 265, 62, 80, 72) + box('B2', 170, 62, 80, 72);
-    P += pill('sm-eat', 70, 152, 100, 66, 0, ['飲食', 'スペース']);
-    P += box('C1', 170, 165, 72, 72) + box('C2', 170, 255, 72, 72) + box('C3', 170, 345, 72, 72);
-    P += box('E1', 70, 250, 66, 74);
-    P += c4(110, 452);
-    P += pill('sm-rb', 268, 535, 140, 54, -28, ['レッドブル', '車展示']);
-    P += pill('sm-eat', 112, 625, 152, 54, -35, ['飲食スペース']);
-    P += box('D1', 242, 858, 70, 70, '本部') + box('D2', 162, 858, 68, 68) + box('D3', 84, 858, 68, 68);
-    P += `<rect class="sm-gate" x="170" y="932" width="190" height="52" rx="26"/>`;
-    P += `<text class="sm-gate-t" x="265" y="966">藤龍門</text>`;
-    P += `<text class="sm-mini" x="138" y="963" style="font-weight:700">入口</text></svg>`;
-    return L + P;
-  }
 
   const stallState = { day: 'all', cat: 'all' };
   function renderStalls() {
@@ -2373,9 +2235,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
       const items = STALLS.filter((s) => s.a === ar.id);
       h += `<section class="block area" data-area="${ar.id}" aria-labelledby="area-${ar.id}">
         <h3 class="h3" id="area-${ar.id}">${esc(ar.title)} <span class="h3-sub">${esc(ar.sub)}</span></h3>`;
-      if (ar.map) {
-        h += `<div class="map-wrap">${stallMapSVG('stalls')}</div><p class="map-cap"><span>パンフレット裏面のマップをもとにした概略図です（位置はおおよそ）。番号をタッチするとお店の情報へ移動します。</span></p>`;
-      }
       h += `<div class="stall-grid">` + items.map((s, i) => {
         const id = s.a === 'outdoor' && /^[A-E]\d+$/.test(s.code) ? `st-${s.code}` : `st-${s.a}-${i}`;
         const day = s.day || 'both';
@@ -2683,7 +2542,7 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
     if (!stack.length) {
       unlockScroll();
       Leaves.resume('modal');
-      if (location.hash && /^#(program|stalls|venue|fireworks|access|survey|guest|game|sponsors)$/.test(location.hash)) {
+      if (location.hash && /^#(program|stalls|fireworks|access|survey|guest|game|sponsors)$/.test(location.hash)) {
         history.replaceState(null, '', location.pathname + location.search);
       }
     }
@@ -2717,15 +2576,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
     const closer = e.target.closest('[data-close]');
     if (closer) { const m = closer.closest('.modal'); if (m) closeModal(m); return; }
 
-    const mapLink = e.target.closest('.sm-link');
-    if (mapLink) {
-      e.preventDefault();
-      const code = mapLink.dataset.stall;
-      if (mapLink.dataset.mode === 'venue') openModal('m-stalls', { replace: true, after: () => focusStall(code) });
-      else focusStall(code);
-      return;
-    }
-
     const opener = e.target.closest('[data-open]');
     if (opener) {
       e.preventDefault();
@@ -2736,6 +2586,8 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
     const a = e.target.closest('a[href]');
     if (a && KIOSK && a.hasAttribute('data-pdf')) {
       e.preventDefault();
+      $('#m-pdf-title').textContent = a.dataset.pdfTitle || '大学バス時刻表';
+      $('#m-pdf-icon').setAttribute('href', '#' + (a.dataset.pdfIcon || 'i-bus'));
       $('#m-pdf-sub').textContent = a.dataset.label || '';
       $('#pdfFrame').src = a.getAttribute('href') + '#view=FitH&toolbar=0';
       openModal('m-pdf', { opener: a });
@@ -3002,7 +2854,6 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
   renderStalls();
   renderFire();
   renderSponsors();
-  $('#venueMap').innerHTML = stallMapSVG('venue');
   // scrollable dialog bodies must be reachable by keyboard
   $$('.modal-body').forEach((b) => { b.tabIndex = 0; });
   tick();
@@ -3014,8 +2865,8 @@ html:not(.is-kiosk) .qr-card:has(.qr-link) .qr-url { display: none; }
   Leaves.start();
   setupIdleReset();
 
-  // Deep links: gate.html#program, #stalls, #venue, #fireworks, #access, #survey, #guest, #game, #sponsors
-  const HASH = { program: 'm-program', stalls: 'm-stalls', venue: 'm-venue', fireworks: 'm-fire', access: 'm-access', survey: 'm-survey', guest: 'm-guest', game: 'm-game', sponsors: 'm-sponsor' };
+  // Deep links: gate.html#program, #stalls, #fireworks, #access, #survey, #guest, #game, #sponsors
+  const HASH = { program: 'm-program', stalls: 'm-stalls', fireworks: 'm-fire', access: 'm-access', survey: 'm-survey', guest: 'm-guest', game: 'm-game', sponsors: 'm-sponsor' };
   function openFromHash() {
     const id = HASH[location.hash.replace('#', '')];
     if (!id) return;
